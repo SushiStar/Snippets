@@ -1,18 +1,17 @@
 #include<iostream>
-#include<functional>
-
+#include<algorithm>
+#include<ctime>
+#include<stdlib.h>
 
 int main(){
-    
-    std::hash<int> hasher;
+    std::srand(time(NULL));   
+    std::vector<int> test;
 
-    int m;
-
-    for(int i = 0; i < 20; ++i){
-    
-//        m = hasher(i);
-        std::cout<<std::hash<int>()(i)<<std::endl;
+    for(int i =0; i < 7; ++i){
+        test.push_back(rand()%10);
     }
-    return 0;
 
+    int key;
+
+    key = std::hash()
 }
