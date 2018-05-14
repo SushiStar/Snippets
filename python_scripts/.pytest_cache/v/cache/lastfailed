@@ -1,1 +1,13 @@
-{}
+{
+  "BeerSong.py": true,
+  "countfromby.py": true,
+  "odd.py": true,
+  "panic.py": true,
+  "panic2.py": true,
+  "vowels2.py": true,
+  "vowels3.py": true,
+  "vowels4.py": true,
+  "vowels6.py": true,
+  "vsearchModule/setup.py": true,
+  "words.py": true
+}
