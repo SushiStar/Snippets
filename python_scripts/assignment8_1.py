@@ -2,7 +2,7 @@
 
 fname = input("Enter file name: ")
 fh = open(fname)
-word = []
+word = list() 
 for line in fh:
     linelist = line.split()
     for w in linelist:
