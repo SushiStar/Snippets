@@ -90,7 +90,21 @@ namespace WD{
         a.sz = 0;
     }
 
+    /*
+     * delete the default copy and move operations.
+     * The =delete mechanism is general, that is, it can be used to suppress any opreation.
+     */
+    class Shape{
+    public:
+        Shape(const Shape&) = delete;           // no copy operations
+        Shape& operator=(const Shape&)=delete;
 
+        Shape(Shape&&) = delete;                // no move operations
+        Shape& operator=(Shape&&)=delete;
 
+        ~Shape();
+        // ...
+    };
+    
 
 }
