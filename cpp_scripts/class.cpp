@@ -7,6 +7,15 @@
  */
 
 #include<iostream>
+#include<stdlib.h>
+#include<string>
+#include<vector>
+
+
+
+class bb{
+    std::vector<std::string> vec;
+};
 
 class aa{
     public:
