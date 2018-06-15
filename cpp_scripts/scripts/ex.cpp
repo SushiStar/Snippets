@@ -13,6 +13,5 @@ int main(){
             << (boost::lambda::_1 *10)
             << "\nType in another number: " );
 
-
     return 0;
 }
