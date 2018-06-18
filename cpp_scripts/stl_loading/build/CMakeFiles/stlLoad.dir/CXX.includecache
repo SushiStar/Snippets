@@ -9,6 +9,10 @@
 /home/wd/Fragmentary/cpp_scripts/stl_loading/stl_load.cpp
 vector
 -
+iostream
+-
+fstream
+-
 stl_reader.h
 /home/wd/Fragmentary/cpp_scripts/stl_loading/stl_reader.h
 eigen3/Eigen/Dense
