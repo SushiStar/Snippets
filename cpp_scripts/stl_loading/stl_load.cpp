@@ -17,6 +17,7 @@
 
 int main(){
 
+    // load the stl file
     try {
         stl_reader::StlMesh <float, unsigned int> mesh ("mount.stl");
 
@@ -35,6 +36,9 @@ int main(){
     catch (std::exception& e) {
         std::cout << e.what() << std::endl;
     }
+
+    // voxelize the mesh
+
 
     return 0;
 }
