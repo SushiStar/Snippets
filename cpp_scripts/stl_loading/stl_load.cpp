@@ -121,7 +121,7 @@ int main(int argc, char* argv[]){
 
     // write those voxels into a txt file and check
     std::ofstream vxls;
-    vxls.open("voxels.txt");
+    vxls.open(argv[2]);
     for(auto voxel:voxels){
         vxls << voxel.x() << " " << voxel.y() << " " << voxel.z() <<std::endl;             
     }

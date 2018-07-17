@@ -6,11 +6,15 @@ int main(){
     float b = 6.0214;
 
 
-    for (int i = 0; i<10; ++i){
+    for (int i = 0; i<100000; ++i){
         int A = (int)(a * 10000);
         int B = (int)(b * 10000);
-        std::cout<<A<<" "<< B<< std::endl;
+        if(A < 0) return 0;
+        if(B < 0) return 0;
+
     }
+
+    std::cout<<"noting wrong."<<std::endl;
     
     return 0;
 
