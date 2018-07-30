@@ -27,6 +27,12 @@ using namespace std;
 using namespace sbpl;
 using namespace geometry;
 
+<<<<<<< HEAD
+    // load the stl file
+    try {
+        stl_reader::StlMesh <float, unsigned int> mesh ("mount.stl");
+=======
+>>>>>>> da89cff2d404152f993a57ef765ea91ea9b65b90
 
 std::size_t hashkey(const Eigen::Vector3d &o){
     std::size_t seed = 0;
@@ -132,6 +138,9 @@ int main(int argc, char* argv[]){
 
     double elapsed = (double)diff / CLOCKS_PER_SEC;
     std::cout<<elapsed<<std::endl;
+
+    // voxelize the mesh
+
 
     return 0;
 }
