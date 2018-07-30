@@ -1,1 +1,0 @@
-/usr/bin/c++   -g   CMakeFiles/stlLoad.dir/stl_load.cpp.o  -o stlLoad  -L/usr/local/lib -rdynamic -lsmpl -Wl,-rpath,/usr/local/lib 
