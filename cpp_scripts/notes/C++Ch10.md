@@ -45,4 +45,7 @@ A class with **constexpr** constructor is called a **literal** type.
 
 ###**Implicit Type Conversion**
 * Promotions: The implicit conversions that preserve values are commonly referred to as ***promotions***.
-* 
+* Conversions: Be careful about nawworing conversions, the {}-initializer syntax prevents narrowing. If potentially narrowing conversions are unavoidable, considering using some form of run-time checked conversion function, such as <code>narrow\_cast<>()</code>.
+* Any pointer to an object type can be implicitly converted to a <code>void\*</code>. A pointer to a derived class can be implicitly converted to a pointer (reference) to an accessible and unambiguous base.
+* A pointer to a function or to a member cannot be implicitly converted to a <code>void\*</code>.
+* Conversion from an floating-point type to an integer type truncates.  
