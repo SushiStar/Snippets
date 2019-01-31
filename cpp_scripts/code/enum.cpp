@@ -1,17 +1,15 @@
-// enum value cannot be double 
+// enum value cannot be double
 
 #include <iostream>
 
 using namespace std;
 
-int main(){
- enum day{
-    monday=1, tuesday=2, wednesday=3, thursday=4
- };
+int main() {
+    enum day { monday = 1, tuesday = 2, wednesday = 3, thursday = 4 };
 
- day a = monday;
+    day a = monday;
 
- cout<< a<< endl;
+    cout << a << endl;
 
-return 0; 
+    return 0;
 }
