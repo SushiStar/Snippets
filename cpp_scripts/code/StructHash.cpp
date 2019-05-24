@@ -16,6 +16,7 @@ public:
     point(): x(0), y(0){}
     point(double x, double y):x(x), y(y) {}
 
+    // it is almost impossible for float numbers to equal
     bool operator==(point const& other) const{
         return x == other.x && y == other.y;
     }
