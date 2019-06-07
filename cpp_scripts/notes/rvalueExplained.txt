@@ -1,0 +1,20 @@
+Rvalue references solve at least two problems:
+1. Implementing move semantics.
+2. Perfect forwarding.
+
+An lvalue is an expression that refers to a memory location and allows us to take the address of that memory location via the & operator.
+An rvalue is an expression that is not an lvalue.
+
+Rvalue references allow a function to branch at compile time (via overload resolution) on the condition "Am I being called on an rvalue or lvalue?"
+
+Things that are declared as rvalue reference can be lvalues or rvalues. The distinguishing critirion is: if it has a name, then it is an lvalue. Otherwise, it is an rvalue.
+
+std::move() turns its argument into an rvalue even if it isn't, and it achieves that by "hiding the name"
+
+Any modern compiler will apply return value optimization to the original function definition. In other words, rather than constructing an X locally and then copying it out,
+the compiler would construct the X object directly at the location of foo's return value.
+
+When foo is called on an lvalue of type A, then T resolves to A& and hence, by the reference collasping rules, the argument type effectively becomes A&
+When foo is called on an rvlaue of type A, then T resolves to A, and hence the argument type becomes A&&.
+
+

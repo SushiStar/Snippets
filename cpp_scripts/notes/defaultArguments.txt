@@ -1,0 +1,6 @@
+Default arguments are different from constant arguments as constant arguments can't be changed whereas default arguments
+can be overwritten if required.
+Default arguments are overwritten if calling function provides value for them.
+During calling of function, arguments from calling function to called function are copied from left to right.
+Once default value is used for argument in function definition, all sbusequent arguments to it must have default value. It
+can also be stated as default arguments are assigned from right to left.

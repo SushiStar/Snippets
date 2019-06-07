@@ -1,0 +1,16 @@
+A non-constructor function that is declared with a constexpr specifier is a constexpr function.
+A constexpr function is a function that can be invoked within a constant expression.
+A constexpr function must satisfy the following conditions:
+
+It is not virtual.
+Its return type is a literal type.
+When initializing the return value, each constructor call and implicit conversion is valid in a constant expression.
+Its function body is =delete or =default, otherwise its function body must contain only the following statements:
+    null statements;
+    static_assert declarations;
+    typedef declarations that do not define classes or enumerations;
+    using directives;
+    using declarations;
+    one return statement;
+
+the function with contexpr specifier is implicitly inline;

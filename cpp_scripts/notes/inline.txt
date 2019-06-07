@@ -1,0 +1,24 @@
+C++ provides inline functions to reduce the function call overhead. Inline function is a function that is expanded in line
+when it is called. When the inline function is called, whole code of the inline function gets inserted or substituted at
+the point of inline function call. This substitution is performed by the C++ compiler at the compile time. Inline function
+may increase efficiency if it is samll.
+
+Compiler can ignore the request for inlining. Compiler may not perform inlining in such circumstances like:
+1) If a function contains a loop. (for, while, do-while)
+2) If a function contains static variables.
+3) If a function is recursive.
+4) If a function return type is other than void, and the return statement doesn't exist in function body.
+5) If a function contains switch or goto statment.
+
+Advantages:
+1) Function call overhead doesn't occur.
+2) It also saves the overhead of push/pop variables on the stack stack when the function is called.
+3) It also saves the overhead of a return call from a function.
+4) When you inline a function, you may enable compiler to perform context specific optimization on the body of the function.
+
+Disadvantages:
+1) The added variables from the inlined function consumes addition registers.
+2) If you use too many inline functions then the size of the binary executable file will be large.
+3) Too much inlining can also reduce instruction cache hit rate, thus reducing the speed of instruction fetch from that of cache
+memory to that primary memory.
+4) Inline function may increase compile time overhead.

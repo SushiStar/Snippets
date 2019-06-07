@@ -1,0 +1,2 @@
+It is better to have argument names in function declaration.
+The big advantage is the readability.
