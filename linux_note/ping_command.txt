@@ -1,0 +1,4 @@
+ping is a computer network administration software utility used to test the reachability of a host on an 
+Internet Protocol network.
+
+ping measures the roung-trip time for messages sent from the originating host to a destination computer that are echoed back to the source. 

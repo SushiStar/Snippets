@@ -1,0 +1,12 @@
+In computer programming, a forward declaration is a declaration of an identifier (denoting an entity such as a type, a variable, or a function)
+for which the programmer has not yet given a complete definition.
+
+In c++, you should forward declare classes instead of including headers. Don't use #include when a forward declaration would suffice. When you
+include an header file you introduce an dependency that will cause your code to be recompiled whenever the header file changes.
+
+If your header file uses File class in ways that do not require access to the declaration to the File class, your header file can just forward 
+declare class File.
+
+When you forward declare a type, all the compiler know is that this type exists; It knows nothing about its size, members or methods. This is why
+it's called an incomplete type. Therefore, you cannot use the incomplete type at places where the compiler would need to know the layout of the
+type.
