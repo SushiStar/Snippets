@@ -14,3 +14,5 @@ Its function body is =delete or =default, otherwise its function body must conta
     one return statement;
 
 the function with contexpr specifier is implicitly inline;
+
+The constexpr specifier has to be placed at both declarations and definitions;

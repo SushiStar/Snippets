@@ -1,0 +1,5 @@
+return_type function_name(argument_list, ... )
+The argument_list is one or more normal function parameters. Note that functions that use ellipsis must at least
+have one non-ellipsis parameter. Any arugment passed to the function must match the argument_list parameters first.
+The ellipsis must always be the last parameter in the function. 
+The ellipsis capture any additional arguments (if there are any).
