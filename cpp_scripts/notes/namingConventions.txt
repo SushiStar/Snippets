@@ -1,0 +1,12 @@
+First, it is a convention in C++ that variable names should begin with a lowercase letter.
+If the variable name is one word, the whole thing should be written in lowercase letters.
+
+If the variable or function name is multi-word, there are two common conventions: words separated by underscores, or intercapped (sometimes called camelCase, since the capital letters stick up like the humps on a camel).
+
+Second, you should avoid naming your identifiers starting with an underscore, as these names are typically reserved for OS, library, and/or compiler use.
+
+Third, your identifiers should make clear what the value they are holding means (particularly if the units isn’t obvious).
+Identifiers should be named in a way that would help someone who has no idea what your code does be able to figure it out as quickly as possible. 
+
+Finally, a clarifying comment can go a long way.
+For example, say we’ve declared a variable named numberOfChars that is supposed to store the number of characters in a piece of text.
