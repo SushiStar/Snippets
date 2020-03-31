@@ -1,0 +1,2 @@
+Dynamically allocated memory is allocated on Heap and non-static and local variables
+get momory allocated on Stack.
