@@ -8,6 +8,6 @@
 //constant pointer
 int const *ptr;
 
-// pointer to constant
+// pointer to constant value
 const int *ptr;
 

@@ -30,6 +30,7 @@ C++ offers two related meanings of "constant":
 
 The main idea is performance improvement of programs by doing computations at compile time rather than run time. Note that once a program is compiled and finalized be developer, it is run multiple times by users. The idea is to spend time in compilation and save time at run time (similar to template metaprogramming).
 Rules:
+
 <ul>
 <li>In C++ 11, a constexpr function should contain only one return statement. C++ 14 allows more than one statements.</li>
 <li>constexpr function should refer only constant global variables.</li>
