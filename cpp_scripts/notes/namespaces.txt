@@ -1,0 +1,42 @@
+
+A naming collision occurs when two identical identifiers are introducted into the same scope, 
+and the compiler cannot disambiguate which one to use. When this happens, compiler or linker
+will produce an error because they do not have enough information to resolve the ambiguity.
+
+C++ allows us to define our own namespaces via the namespace keyword. Namespaces that you
+create for your own declarations are called user-defined namespaces. Namespaces provided C++
+(such as the global namespace) or by libraries (such as namespace std) are not considered
+user-defined namespaces.
+Namespace identifiers are typically non-capitalized.
+
+Accessing a namespace with the scope resolution operator (::)
+The best way to tell teh compiler to look in a particular namespace for an identifier is to 
+use the scope resolution operator(::). The scope resolution operator tells the compiler
+that the identifier specified by the right-hand operand should be looked for in the scope
+of the left-hand operand.
+
+The scope resolution operator is great because it allows us to explicitly pick which namespace
+we want to look in, so there's no potential ambiguity.
+
+The scope resolution operator can also be used without any preceeding namespace (eg. ::doSomething).
+In such a case, the identifier (e.g. doSomething) is looked for in the global namespace.
+
+It's legal to declare namespace blocks in multiple locations (either across multiple files, or
+multiple places within the same file). All declarations within the namespace are considered part 
+of the namespace.
+
+Note that this capability also means you could add your own functionality to the std namespace.
+Doing so causes undefined behavior most of the time, because the std namespace has a special rule,
+prohibiting extension from user code.
+
+Namespace aliases
+Because typing the fully qualified name of a variable or function inside a nested namespace can 
+be painful, C++ allows you to create namespace aliases, which allow us to temporarily shorten
+a long sequence of namespaces into something shorter.
+
+In general, you should avoid deeply nested namespaces.
+
+When you should use namespaces
+In applications, namespaces can be used to separate application-specific code from code that might
+be reusuable later (e.g. math functions). For example, physical and math functions could go into
+one namespace (e.g. math::). Language and localization functions in another (e.g. lang::).

@@ -1,0 +1,12 @@
+By convention, global variables are declared at the top of a file, below the includes, but above any code.
+
+Consider using a "g" or "g_" prefix for global variables to help differentiate them from local variables.
+
+Global variables have file scope and static duration
+Global variables have file scope (also informally called global scope or global namespace scope), which means
+they are visible from the point of declaration until the end of the file in which they are declared. Once
+declared, a global variable can be used anywhere in the file from that point onward.
+
+Global variables are created when the program starts, and destroyed when it ends. This is called static duration.
+Variables with static duration are sometimes called static variables.
+Unlike local variables, which are uninitialized by default, static variables are zero-initialized by default.

@@ -1,0 +1,20 @@
+Local variables have block scope.
+An identifier's scope determines where an identifier can be accessed within the source code.
+Scope is a compile-time property.
+Local variables have block scope, which means they are in scope from their point to definition
+to the end of the block they are defined within.
+
+All variable names within a scope must be unique.
+
+Local variables have automatic storage duration.
+A variable's storage duration (usually just called duration) determines what rules govern when 
+and how a variable will be created and destroyed. In most cases, a variable's storage duration
+directly determines its lifetime.
+
+Local variables can be defined inside nested blocks.
+Note that nested blocks are considered part of the scope of the scope of the outer block in which
+they are defined. Consequently, variables defined in the outer look block can be seen inside
+a nested block.
+
+Variables should be defined in the most limited scope
+If a variable is only used within a nested block, it should be defined inside that nested block.
