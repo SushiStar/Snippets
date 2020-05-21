@@ -1,4 +1,4 @@
-#Returning values by value, reference, and address
+#Returning value:q:s by value, reference, and address
 ###Return by value
 When to use return by value:
 - When returning variables that were declared inside the function
@@ -19,12 +19,14 @@ When not to use return by address:
 Similar to pass by address, values returned by reference must be variables (you should not return a reference to a literal or an expression that resolves to a temporary value, as those will go out of scope at the end of the function and you'll end up returning a dangling reference). When a variable is returned by reference, a reference to the variable is passed back to the caller.
 Return by reference is typically used to return arguments passed by reference to the function back to the caller.
 When to use return by reference:
-    - When returning a reference parameter.
-    - When returning an element from an array that was passed into the function.
-    - When returning a large struct or class that will not be destroyed at the end of the function.
-When not to use return by reference:
-    - When returning variables that were declared inside the function or parameters that were passed by values.
-    - When returning a built-in array or pointer value.
+
+- When returning a reerence parameter.
+      - When returning an element from an array that was passed into the function.
+      - When returning a large struct or class that will not be destroyed at the end of the function.
+  When not to use return by reference:
+      - When returning variables that were declared inside the function or parameters that were passed by values.
+  - When returning a built-in array or pointer valu
+
 >Lifetime extension doesn't save dangling references.
 > ```cpp
 >   const int& returnByReference() {
