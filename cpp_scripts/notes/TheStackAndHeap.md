@@ -10,9 +10,9 @@ The memory that a program uses is typically divided into a few different areas, 
 The heap segment keeps track of memory used for dynamic memory allocation.
 It is worth knowing that sequential memory requests may not result in sequential memory addresses being allocated.
 The heap has advantages and disadvantages:
-- Allocating memory ont he heap is comparatively slow.
+- Allocating memory on the heap is comparatively slow.
 - Allocated memory stays allocated until it is specifically deallocated (beware memory leaks) or the application ends.
-- Dynamicallyj allocated memory must be accessed through a pointer. Deferencing a pointer is slower than asccessing a variable directly.
+- Dynamically allocated memory must be accessed through a pointer. Deferencing a pointer is slower than asccessing a variable directly.
 - Because the heap is a big pool of memory, large arrays, structures, or classes can be allocated here.
 
 ###The call stack
