@@ -16,7 +16,7 @@ enum Color
     COLOR_YELLOW,
     COLOR_MAGENTA, // see note about trailing comma on the last enumerator below
 }; // however the enum itself must end with a semicolon
- 
+
 // Define a few variables of enumerated type Color
 Color paint = COLOR_WHITE;
 Color house(COLOR_BLUE);
@@ -75,9 +75,9 @@ Since enumerators aren't usually used for arithmetic or comparisions, it's safe 
 ```cpp
 enum Color; // Error
 enum Color : int; // Okay
- 
+
 // ...
- 
+
 // Because Color was forward declared with a fixed base, we
 // need to specify the base again at the definition.
 enum Color : int
