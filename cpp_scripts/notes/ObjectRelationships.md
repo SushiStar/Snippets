@@ -119,3 +119,119 @@ To create a vector of const references, we'd have to add const before the `std::
 // Vector of const references to std::string
 std::vector<std::reference_wrapper<const std::string>> names{tom, berta};
 ```
+##Assoication
+To qualify as an **association**, an object and another object must have the following relationship:
+- The associated object (member) is otherwise unrelated to the object (class)
+- The associated object (member) can belong to more than one object (class) at a time
+- The associated object (member) does *not* have its existence managed by the object (class)
+- The associated object (member) may or may not know about the existence of the object (class)
+
+Unlike a composition or aggregation, where the part is a part of the whole object, in an association, the associated object is otherwise unrelated to the object. Just like an aggregation, the associated object can belong to multiple objects simultaneously, and isn't managed by those objects.
+However, unlike an aggregation, where the relationship is always unidirectional, in an association, the relationshiop may be unidirectional or bidirectional (where the two objects are aware of each other).
+
+####Implementing associations
+Usually, associations are implemented using pointers, where the object points at the associated object.
+```cpp
+#include <cstdint>
+#include <functional>
+#include <iostream>
+#include <string>
+#include <vector>
+
+// Since doctor and patient have a circular dependency, we're going to forward declare Patient
+class Patient;
+
+class Doctor {
+private:
+	std::string m_name{};
+	std::vector<std::reference_wrapper<const Patient>> m_patients{};
+public:
+	Doctor(const std::string & name) m_name{name}{}
+	void addPatient(Patient& patient);
+	// We'll implement this function below Patient since we need Patient to be defined at that point
+	friend std::ostream &opeartor<<(std::ostream &out, const Doctor &doctor);
+	const std::string &getName() const {return m_name;}
+};
+
+class Patient {
+private:
+	std::string m_name{};
+	std::vector<std::reference_wrapper<const Doctor>> m_doctor{};
+	// We're going to make addDoctor private because we don't want the public to use it.
+	void addDoctor(const Doctor& doctor) {
+		m_doctor.push_back(doctor);
+	}
+public:
+	Patient(const std::string &name) : m_name{name}{}
+	friend std::ostream &operator<<(std::ostream &out, const Patient &patient);
+	cosnt std::string& getName() const {return m_name;}
+	// We'll friend Doctor::addPatient() so it can access the private function Patient::addDoctor()
+	friend void Doctor::addPatient(Patient& patient);
+};
+
+void Doctor::addPatient(Patient& patient) {
+	// Our doctor will add this patient
+	m_patient.push_back(patient);
+	// and the patient will also add this doctor
+	patient.addDoctor(*this);
+}
+/ ...
+```
+In general, you should avoid bidirectional associations if a unidirectional one will do, as they add complexity and tend to be harder to write without making errors.
+
+####Reflexive association
+Sometimes objects may have a relationship with other objects of the same type. This is called **reflexive association**.
+```cpp
+#include <string>
+class Course {
+private:
+	std::string m_name;
+	const Course *m_prerequisite;
+public:
+	Course(const std::string &name, const Course *prerequisite = nullptr) : m_name(name), m_prerequisite(prerequisite){}
+};
+```
+####Associations can be indirect
+In all of the previous cases, we've used either pointers or references to directly link objects together. However, in an association, this is not strictly required. Any kind of data that allows you to link two objects together suffices.
+```cpp
+#include <iostream>
+#include <string>
+class Car {
+private:
+	std::string m_name;
+	int m_id;
+public:
+	Car(const std::string& name, int id) : m_name(name), m_id(id){}
+	const std::string& getName() const {return m_name;}
+	int getId() const {return m_id;}
+};
+
+// Our CarLot is essentially just a static array of Cars and a lookup function to retrieve them.
+// Because it's static, we don't need to allocate an object of type CarLot to use it.
+class CarLot {
+private:
+	static Car s_carLot[4];
+public:
+	Carlot() = delete;	// Ensure we don't try to create a CarLot
+	static Car* getCar(int id) {
+		for (int count{0}; count < 4; ++count) {
+			if (s_carLot[count].getId() == id) {
+				return &(s_carLot[count]);
+			}
+		}
+		return nullptr;
+	}
+};
+
+Car CarLot::s_carLot[4]{{"Prius", 4}, {"Corolla", 17}, {"Accord", 84}, {"Matrix", 62}};
+
+class Driver {
+private:
+	std::string m_name;
+	int m_carId; 	// we're associated with the Car by ID rather than pointer
+public:
+	Driver(const std::string &name, int carId) : m_name{name}, m_carId{carId}{}
+	const std::string &getName() const {return m_name;}
+	int getCarId() const {return m_carId;}
+};
+```
