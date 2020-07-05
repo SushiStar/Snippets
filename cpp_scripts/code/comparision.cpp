@@ -5,12 +5,14 @@
  */
 #include <vector>
 #include <set>
-#include <priority_queue>
+#include <queue>
+using namespace std;
 
 // Define operators <()
 struct Edge {
     int from, to, weight;
-    bool operator<(Edge other) const { return weight > other.weight; }
+    // the overloaded operator < must be non-member function
+    friend bool operator<(Edge &curr, Edge &other) { return curr.weight > other.weight; }
 };
 
 struct Edge {
@@ -18,7 +20,8 @@ struct Edge {
     friend bool operator<(Edge &a, Edge &b) const {
         return a.weight > b.weight;
     }
-}
+};
+
 priority_queue<Edge> pq; // use it directly
 set<Edge> s;
 std::vector<Edge> vct;
