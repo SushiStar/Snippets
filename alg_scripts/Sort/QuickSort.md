@@ -1,4 +1,4 @@
-#Quicksort
+# Quicksort
 Quicksort is a divide-and-conquer method for sorting. It works by *partitioning* an array into two subarrays, then sorting the subarrays independently.
 Quicksort is complementary to mergesort: for mergesort, we break the array into two subarrays to be sorted and then combine the ordered subarrays to make whole ordered array; for quicksort, we rearrange the array such that, when teh two subarrays are sorted, the whole array is ordered.
 
