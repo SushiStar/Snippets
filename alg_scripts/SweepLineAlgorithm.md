@@ -1,7 +1,4 @@
 # Sweep Line Algorithm
-<<<<<<< HEAD
-
-=======
 **Sweep Line**:  A vertical line that is conceptually 'swept' across the plane.
 
 ### Closest Pair
@@ -19,4 +16,3 @@ We now know which rectangles are cut by the sweep line (red in the diagram), but
 We can determine the cut length by running the same algorithm in an inner loop, but rotated 90 degrees. Ignore the inactive rectangles, and consider a horizontal sweep line that moves top-down. The events are now the horizontal edges of the active rectangles, and every time we cross one, we can simply increment or decrement a counter that says how many rectangles overlap at the current point. The cut length increases as long as the counter is non-zero. Of course, we do not increase it continuously, but rather while moving from one event to the next.
 
 With the right data structures, this can be implemented in O(N2) time (hint: use a boolean array to store the active set rather than a balanced binary tree, and pre-sort the entire set of horizontal edges). In fact the inner line sweep can be replaced by some clever binary tree manipulation to reduce the overall time to O(N log N), but that is more a problem in data structures than in geometry, and is left as an exercise for the reader. The algorithm can also be adapted to answer similar questions, such as the total perimeter length of the union or the maximum number of rectangles that overlap at any point.
->>>>>>> e63e605de79c39a6d5b2e537788fefed64b431bd
