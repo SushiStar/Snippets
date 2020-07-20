@@ -1,10 +1,12 @@
-#C-style strings
+# C-style strings
 A **C-style string** is simply an array of characters that uses a null terminator. A **null terminator** is a special character ('\0', ascii code 0) used to indicate the end of the string. More generically, a C-style string is called a **null-terminated string**.
 To define a C-style string, simply declare a char array and initizlize it with a string literal:
+
 ```cpp
 char myString[]{"string"};  // although "string" only has 6 characters, C++ automatically adds a null terminator to the end o fthe string for us.
 ```
-###C-style strings and std::cin
+### C-style strings and std::cin
+
 ```cpp
 #include <iostream>
 #include <iterator> // for std::size
@@ -20,9 +22,10 @@ int main()
 }
 ```
 Use getline() to guarantee that no more than `std::size(name)` characters are read from `std::cin`.
-###Manipulating C-style strings
+### Manipulating C-style strings
 C++ provides many functions to manipulate C-style strings as part of the `<cstring>` library.
 `strcyp()` allows you to copy a string to another string. More commonly, this is used to assign a value to a string:
+
 ```cpp
 #include <cstring>
 int main() {

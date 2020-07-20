@@ -1,6 +1,7 @@
-#Arrays
+# Arrays
 A **fixed array** (also called a **fixed length array** or **fixed size array**) is an array where the length is known at compile time.
 When declaring a fixed array, the length of the array (between the square brackets) must be a compile-time constant. This is because the length of a fixed array must be known at compile time:
+
 ```cpp
 // using a literal constant
 int array[5]; // Ok
@@ -22,21 +23,24 @@ int array[MAX_ARRAY_LENGTH]; // Ok
 ```
 Note that non-const variables or run-time constants cannot be used.
 
-####A note on dynamic arrays
+####  A note on dynamic arrays
 Because fixed arrays have memory allocated at compile time, that introduces two limitations:
     * Fixed arrays cannot have a length based on either user input or some other value calculated at runtime.
-    * Fixed arrays have a fixed length that can not be changed.
+        * Fixed arrays have a fixed length that can not be changed.
 
-###Initizlizing fixed arrays
+###  Initizlizing fixed arrays
 C++ provides a more conventient way to initialize entire arrays via use of an **initilizer list**.
+
 ```cpp
 int prime[5] = {2, 3, 5, 7, 11};
 ```
 If there are more initizlizers in the list than the array can hold, the compiler will generate an error.
 However, if there are less initializers in the list than the array can hold, the remaining elements are initizlied to 0 (or whatever value 0 converts to for a non-integral fundamental type -- e.g. 0.0 for double). This is called **zero initizlization**.
-###Omitted length
+### Omitted length
 If you are initializing a fixed array of elements using an initializer list, the compiler can figure out the length of the array for you, and you can explicitly declaring the length of the array.
-###Arrays and enums
+
+### Arrays and enums
+
 ```cpp
 enum StudentNames
 {

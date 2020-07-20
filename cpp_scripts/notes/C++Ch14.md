@@ -1,4 +1,4 @@
-#Chapter 14: Namespaces
+# Chapter 14: Namespaces
 
 The notion of a namespace is provided to directly represent the notion of a set of facilities that
 directly belong together.

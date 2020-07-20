@@ -1,5 +1,6 @@
-#Basic inheritance in C++
+# Basic inheritance in C++
 Inheritance in C++ takes place between classes. In an inheritance (is-a) relationship, the class being inherited from is called the **parent class, base class, or superclass**, and the class doing the inheriting is called the **child class, derived class, or subclass**.
+
 ```cpp
 #include <string>
 class Person {
@@ -28,16 +29,16 @@ public:
 	}
 }
 ```
-####Inheritance chains
+#### Inheritance chains
 It's possible to inherit from a class that is itself derived from another class.
 
 Inheriting from a base class means we don't have to redefine the information from the base class in our derived classes. We automatically receive the member functions and member variables of the base class through inheritance, and then simply add the additional functions or member variables we want.
 
-
-###Order of construction of derived classes
+### Order of construction of derived classes
 When C++ constructs derived objects, it does so in phases. First, the most-base class (at the top of the inheritance tree) is constructed first. Then each child class is constructed in order, until the most-child class (at the bottom of the inheritance tree) is constructed last.
 
-##Constructors and initizliation of derived classes
+## Constructors and initizliation of derived classes
+
 1. Memory for derived is set aside (enough for both the Base and Derived portions)
 2. The appropriate Derived constructor is called.
 3. **The base object is constructed first using the appropriate Base constructor**. If no base constructor is specified, the default constructor will be used.
@@ -71,8 +72,8 @@ Here's what happens:
 8. The derived class constructor body executes, which does nothing
 9. The derived class constructor returns
 
-####Inheritance chains
+#### Inheritance chains
 Classes in an inheritance chain work in exactly the same way.
 
-####Destructors
+#### Destructors
 When a derived class is destroyed, each destructor is called in the reverse order of construction

@@ -23,8 +23,9 @@ std::vector<string> arguments (int argc, char* argv[]) {
 Ther operators ,(comma), &&(logical and), and ||(logical or) guarantee that their left-hand operand is evaluated before their right-hand operand. (***short circuit evaluation***)
 Parenthesse should be used whenever a programmer is in doubt about those rules.
 
-###**Constant**
+###  Constant
 C++ offers two related meanings of "constant":
+
 * constexpr: Evaluate at compile time;
 * cosnt: Do not modify in this scope;
 
@@ -37,14 +38,14 @@ Rules:
 <li>constexpr function can call only other constexpr function not simple function.</li>
 <li>Function should not be of void type and some operator like prefix increment (++v) are not allowed in constexpr function.</li>
 </ul>
-#####**constexpr vs inline functions**:
+##### **constexpr vs inline functions**:
 Both are for performance improvements, inline functions are request to compiler to expand at compile time and save time of function call overheads. In inline functions, expressions are always evaluated at run time. constexpr is different, here expressions are evaluated at compile time.
 
 We can use **constexpr** functions and literal types to provide a significant level of type safety and expressive power.
 A class with **constexpr** constructor is called a **literal** type.
 
+### **Implicit Type Conversion**
 
-###**Implicit Type Conversion**
 * Promotions: The implicit conversions that preserve values are commonly referred to as ***promotions***.
 * Conversions: Be careful about nawworing conversions, the {}-initializer syntax prevents narrowing. If potentially narrowing conversions are unavoidable, considering using some form of run-time checked conversion function, such as <code>narrow\_cast<>()</code>.
 * Any pointer to an object type can be implicitly converted to a <code>void\*</code>. A pointer to a derived class can be implicitly converted to a pointer (reference) to an accessible and unambiguous base.

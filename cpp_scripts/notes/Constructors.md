@@ -1,22 +1,25 @@
-#Constructors
+# Constructors
 A constructor is a special kind of class member function that is automatically called when an object of that class is instantiated. Constructors are typically used to initialize member variables of the class to appropriate default or user-provided values, or to do any setup steps necessary for the class to be used.
 Unlike normal member functions, constructors have specific rules for how htey must be named:
+
 1. Constructors must have the same name as the class (with the same capitalization)
 2. Constructors have no return type (not even void)
 
-###Default constructors
+### Default constructors
 A constructor that takes no parameters (or has parameters that all have default values) is called a default constructor. The default constructor is called if no user-provided initialization values are provided.
 
-###Direct and uniform initialization using constructors with parameters
+### Direct and uniform initialization using constructors with parameters
+
 ```cpp
 Fraction fiveThirds{5, 3};      // Brace initialization, calls Fraction(int, int)
 Fraction threeQuarters(3, 4);   // Direct initialization, also calls Fraction(int, int)
 ```
 Since C++11, we prefer brace initialization. There is another special constructor that might take brace initialization do something different, in that case we have to use direct initialization.
 
-##Copy initialization using equals with classes
-###Reducing your constructors
+## Copy initialization using equals with classes
+### Reducing your constructors
 The default constructor is actualy somewhat redundant. And it could be simplified as follows:
+
 ```cpp
 #include <cassert>
 class Fraction {
@@ -37,13 +40,14 @@ public:
     double getValue() {return static_cast<double>(n_numerator)/m_denominator;}
 }
 ```
-###A reminder about default parameters
+### A reminder about default parameters
 When defining a function with default parameters, all default parameters must follow any non-default parameters, ie. there cannot be a non-defaulted parameters after a defaulted parameter.
 
-###An implicitly generated default constructor
+### An implicitly generated default constructor
 If your class has no constructors, C++ will automatically generate a public default constructor for you. This is sometimes called an implicit constructor.
 Implicit constructor allows us to create an object with no arguments, but doesn't initialize any of the built-in members, because they are fundamental types and those don't get initialized upon creation.
 To make sure the member variables get initialized, we can initialize them at their declaration:
+
 ```cpp
 class Date {
 private:
@@ -89,16 +93,17 @@ Using `= defalut` may be longer than writing a constructor with an empty body, b
 >**Rule**
 >If you have constructors in your class and need a default constructor that does nothing, use `= default`.
 
-###Classes containing classes
+### Classes containing classes
 A `class` may contain other classes as member variables. By default, when the outer class is constructed, the member variables will have their deafult constructors called. The happens before the body of the constructor executes.
 
-###Constructor notes
+### Constructor notes
 Constructors actually serves two purposes. First, constructors determine who is allowed to create an object. That is, an object of a class can only be created if a matching constructor can be found.
 Second, constructors can be used to initialize objects. Whether the constructor actually does an initialization is up to the programmer. It's syntactically valid to have a constructor that does no initialization at all (the constructor still serves teh purpose of allowing the object to be created, as per above).
 
-##Constructor member initializer lists
-###Member initializer lists
+## Constructor member initializer lists
+### Member initializer lists
 C++ provides a method for initializing class member variables (rather than assigning values to them after they are created) via a member initializer list.
+
 ```cpp
 class Something
 {
@@ -129,20 +134,22 @@ int main()
 >**Rule**
 >Use member initializer lists to initialize your class member variables instead of assignment.
 
-###Formatting your initializer list
+### Formatting your initializer list
 If the initializer list fits on the same line as the function name, then it's fine to put everything on one line.
 If the initializer list doesn't fit on the same line as the funciton name, then it should go indented on the next line.
 If all of the initializers don't fit on a single line (or the initializers are non-trivial), then you can space them out, one per line.
 
-###Initializer list order
+### Initializer list order
 Variables in the initializer list are not initialized in the order that they are specified in the initilizer list. Instead, they are initialized in the order in which they are declared in the class.
 For best results, the following recommendations should be observed:
+
 1. Don't initialize member variables in such a way that they are dependent upon other member variables being initialized first (in other words, ensure your member variables will properly initialize even if the initialization ordering is different).
 2. Initialize variables in the initializer list in the same order in which they are declared in your class. This isn't strictly required so long as the prior recommendation has been followed, but your compiler may give you a warning if you don't do so and you have all warnings turned on.
 
-##Non-static member initialization
+## Non-static member initialization
 Non-static member initialization (also called in-class initializers) provide default values for your member variables that your constructors will use if the constructors do not provide initialization values for the members themselves (via the member initialization list).
 If a default initialization value is provided and the constructor initializes the member vai the member initializer list, the member initializer ilst will take precedence.
+
 ```cpp
 #include <iostream>
  
@@ -175,12 +182,13 @@ public:
  
 };
 ```
-#Overlapping and delegating constructors
-###Constructors with overlapping functionality
+# Overlapping and delegating constructors
+### Constructors with overlapping functionality
 With a pre-C++11 compiler, if you try to have one constructor call another constructor, it will often compile, but it will not work as you expected, and you will likely spend a long time trying to figure out why, even with a debugger.
-###Using a spearate function
+### Using a spearate function
 Constructors are allowed to call non-constructor functions in class.
 The best solution is to create a non-constructor function that does the common initialization, and have both constructors call that funciton.
+
 ```cpp
 class Foo {
 private:
@@ -201,8 +209,9 @@ public:
 It is fairly common to include an `Init()` function that initializes member variables to their default values, and then have each constructor call that `Init()` function before doing its parameter-specific tasks. This minimizes code duplication and allows you to explicitly cann `Init()` from wherever you like.
 One small caveat: be careful when using Init() functions and dynamically allocated memory. Because Init() functions can be called by anyone at any time, dynamically allocated memory may or may not have already been allocated when `Init()`  is called.
 
-###Delegating constructors in C++11
+### Delegating constructors in C++11
 Starting with C++11, constructors are now allowed to call other constructors. This process is called delegating constructors (or constructor chaining):
+
 ```cpp
 class Foo {
 private:

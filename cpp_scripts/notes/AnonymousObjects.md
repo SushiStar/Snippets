@@ -1,12 +1,14 @@
-#Anonymous Objects
+# Anonymous Objects
 An **anonymous object** is essentially a value that has no name. Because they have no name, there's no way to refer to them beyond the point they are created. Consequently, they have "expression scope", meaning they are created, evaluated, and destroyed all within a single expression:
+
 ```cpp
 int add(int x, int y) {
 	return x+y;	// an anonymous object is created to hold and return the result of x+y
 }
 ```
-###Anonymous class objects
+### Anonymous class objects
 It is possible to construct anonymous objects for our own classes types as well. This is done by creating objects like normal, but omitting the variable name.
+
 ```cpp
 Cents cents(5); // normal variable
 Cents(7); 		// anonymous object

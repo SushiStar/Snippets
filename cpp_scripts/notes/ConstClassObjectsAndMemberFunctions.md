@@ -1,8 +1,9 @@
-#Const class objects and member functions
-##Const classes
+# Const class objects and member functions
+## Const classes
 Instantiated class objects can be made const by using the const keyword.
-##Const member functions
+## Const member functions
 A const member function is a member function that guarantees it will not modify the object or call any non-const member functions (as they may modify the object).
+
 ```cpp
 class Something {
 public:
@@ -19,9 +20,10 @@ Furthermore, any const member function that attempts to change a member variable
 >**Rule**
 >Make any member function that does not modify the state of the class object const, so that it can be called by const objects.
 
-##Const references
-##Overloading const and non-const function
+## Const references
+## Overloading const and non-const function
 Although it is not done very often, it is possible to overload a function in such a way to have a const and non-const version of the same function:
+
 ```cpp
 #include <string>
 

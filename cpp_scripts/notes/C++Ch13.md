@@ -1,5 +1,6 @@
-#Chapter 13: Error Handling
+# Chapter 13: Error Handling
 The discussions of exceptions focuses on problems that needed to be handled in long-running systems, systems with stringent reliablity requirements, and libraries.
+
 ## Exceptions
 Example:
 ```

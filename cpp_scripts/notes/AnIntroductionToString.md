@@ -1,4 +1,4 @@
-#An introduction to std::string
+# An introduction to std::string
 
 When we used operator `>>` to extract a string into variable name, only "John" was extracted, leaving "Doe" inside std::cin, waiting for the next extraction. When we then used operator `>>` to get variable age, it extracted "Doe" instaed of waiting for us to input an age.
 
