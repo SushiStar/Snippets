@@ -1,5 +1,5 @@
-#BackTracking
-###Simple Backtracking: 8 Queens Chess Problem
+# BackTracking
+### Simple Backtracking: 8 Queens Chess Problem
 >In chess (with an 8x8 board), it is possible to place eight queens on the board such that no two queens attack each other. Determine *all* such possible arrangements given the position of one of the queens (i.e. coordinate $(a, b)$ must contain a queen). Output the possibilities in lexicographical (sorted) order.
 > 1. No two queens can share the same column or the same row.
 > 2. No two queens can share any of the two diagonal lines: `abs(i-k) != abs(j-l)`.
@@ -43,7 +43,7 @@ int main() {
 }
 ```
 
-###More chanllenging Backtracking: n-Queen Problem
+### More chanllenging Backtracking: n-Queen Problem
 >Given an nxn chessboard (3 < n < 15) where some of the cells are bad (queens can not be placed on those bad cells), how many ways can you place n queens in the chessboard so that no two queens attach each other?
 The major issue with the previous n-queens code is that it is quite slow when checking whether the position of a new queen is valid since we compare the new queen's position with the previous c-q queens' positions. It is better to store the same information with three boolean arrays (we use bitsets for now):
 ```cpp
@@ -66,25 +66,25 @@ void backtrack(int c) {
 }
 ```
 ### Tips
-####Filtering versus Generating
+#### Filtering versus Generating
 Programs that examine lots of (if not all) candidate solutions and choose the ones that are correct (or remove the incorrect ones) are called "filters". Usually 'filter' programs are written iteratively.
 Programs that gradually build solutions and immediately prune invalid partial solutions are called 'generators'. Usually, 'generator' programs are easier to implement when written recursively as it gives us greater flexibility for pruning the search space.
 Generally, filters are easier to code but run slower, given that it usually far more difficult to prune more of the search space iteratively.
 
-####Prune Infeasible/Inferior Search Space early
+#### Prune Infeasible/Inferior Search Space early
 When generating solutions using recursive backtracking, we may encounter a partial solution that will never lead to a full solution. We can prune teh search there and explore other parts of the search space.
 In other problems, we may be able to compute the 'Potential worth' of a partial (and still valid) solution. If the potential worth is inferior to the worth of the current best found valid solution so far, we can prune the search there.
 
-####Utilize Symmetries
+#### Utilize Symmetries
 Some problems have symmetries and we should try to exploit symmetries to reduce execution time. However, we have to remark that it is true sometimes considering symmetries can actually complicate the code. In competitive programming, this is usually not the best way (we want shorter code to minimize bugs). If the gain obtained by dealing with symmetry is not significant in solving the problem, just ignore this tip.
 
-####Pre-Computation
+#### Pre-Computation
 Sometimes it is helpful to generate tables or other data structures that accelerate the lookup of a result prior to teh execution of the program itself. This is called Pre-Communication, int which one trades memory/space for time.
 
-####Try solving the Problem Backwards
+#### Try solving the Problem Backwards
 Some contest problems look far easier when they are solved 'backwards' than when they are solved using a frontal attack. Be prepared to attempt unconventional approaches to problems.
 
-####Optimizing Your Source Code
+#### Optimizing Your Source Code
 1. A biased opinion: Use C++ instead of Jave.
 2. For C/C++ users, use the faster C-style scanf/printf rather than cin/cout.
 3. Use the expected O(nlogn) but cache-friendly quicksort in C++ STL `algorithm::sort` rather than the true O(nlogn) but non cache-friendly heapsort (its root-to-leaf / leaf-to-root operations span a wide range of indices -- lots of cache misses).

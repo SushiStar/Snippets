@@ -1,4 +1,4 @@
-#Insertion Sort
+# Insertion Sort
 The algorithm that people often use to sort bridge hands is to consider the cards one at a time, inserting each into its proper place among those already considered (keeping them sorted).
 In a computer implementation, we need to make space to insert the current item by moving larger items one position to the right, before inserting the current item into the vacated position.
 
@@ -21,7 +21,7 @@ void insertionSort(int arr[], int n) {
 }
 ```
 
-####Partially sorted arrays:
+#### Partially sorted arrays:
 - An array where each entry is not far from its final position
 - A small array appended to a large sorted array
 - An array with only a few entries that are not in place

@@ -1,4 +1,4 @@
-#Topological sort (Directed Acyclic Graph)
+# Topological sort (Directed Acyclic Graph)
 Topological sort (or topological ordering) of a Directed Acyclic Graph (DAG) is a linear ordering of the vertices in the DAG so that vertex $u$ comes before vertex $v$ if edge ($u -> v$) exists in the DAG. Every DAG has at least one and possibly more topological sort(s).
 One application of topological sorting is to find a possible sequence of modules that a university student has to take to fullfill graduation requirement. Each module has certain pre-requisites to be met.
 
