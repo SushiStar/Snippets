@@ -1,4 +1,5 @@
-# Constructors
+Constructors
+
 A constructor is a special kind of class member function that is automatically called when an object of that class is instantiated. Constructors are typically used to initialize member variables of the class to appropriate default or user-provided values, or to do any setup steps necessary for the class to be used.
 Unlike normal member functions, constructors have specific rules for how htey must be named:
 
@@ -41,7 +42,7 @@ public:
 }
 ```
 ### A reminder about default parameters
-When defining a function with default parameters, all default parameters must follow any non-default parameters, ie. there cannot be a non-defaulted parameters after a defaulted parameter.
+When defining a function with default parameters, all default parameters must follow any non-default parameters, ie. there cannot be a non-defaulted parameter after a defaulted parameter.
 
 ### An implicitly generated default constructor
 If your class has no constructors, C++ will automatically generate a public default constructor for you. This is sometimes called an implicit constructor.
@@ -56,7 +57,8 @@ private:
     int m_day {1};
 }
 ```
-If your class has any other constructors, the implictly generated constructor will not be provided.
+**If your class has any other constructors, the implictly generated constructor will not be provided.**
+
 ```cpp
 class Date
 {
@@ -148,7 +150,7 @@ For best results, the following recommendations should be observed:
 
 ## Non-static member initialization
 Non-static member initialization (also called in-class initializers) provide default values for your member variables that your constructors will use if the constructors do not provide initialization values for the members themselves (via the member initialization list).
-If a default initialization value is provided and the constructor initializes the member vai the member initializer list, the member initializer ilst will take precedence.
+If a default initialization value is provided and the constructor initializes the member via the member initializer list, the member initializer list will take precedence.
 
 ```cpp
 #include <iostream>
@@ -206,7 +208,7 @@ public:
     }
 };
 ```
-It is fairly common to include an `Init()` function that initializes member variables to their default values, and then have each constructor call that `Init()` function before doing its parameter-specific tasks. This minimizes code duplication and allows you to explicitly cann `Init()` from wherever you like.
+It is fairly common to include an `Init()` function that initializes member variables to their default values, and then have each constructor call that `Init()` function before doing its parameter-specific tasks. This minimizes code duplication and allows you to explicitly call `Init()` from wherever you like.
 One small caveat: be careful when using Init() functions and dynamically allocated memory. Because Init() functions can be called by anyone at any time, dynamically allocated memory may or may not have already been allocated when `Init()`  is called.
 
 ### Delegating constructors in C++11
@@ -225,8 +227,9 @@ public:
     }
 };
 ```
-This works exactly as you'd expected. Make sure you're calling the constructor from the member initializer list, not in the body of the constructor.
+This works exactly as you'd expected. **Make sure you're calling the constructor from the member initializer list, not in the body of the constructor.**
 Another example:
+
 ```cpp
 #include <string>
 #include <iostream>
