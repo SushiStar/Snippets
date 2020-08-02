@@ -51,7 +51,7 @@ auto isEven{
     return ((i % 2) == 0);
   }
 };
- 
+
 return std::all_of(array.begin(), array.end(), isEven);
 ```
 As it turns out, lambdas don't have a type that we can explicitly use. When we write a lambda, the compiler generates a unique type just for the lambda that is not exposed to us. In actuality, lambdas aren't funtions. They are a special kind of object called a functor. Functors are objects that contain an overloaded `opeator()` that make them callable like a function.
@@ -64,27 +64,27 @@ int main()
       return (a + b);
     }
   };
- 
+
   addNumbers1(1, 2);
- 
+
   // Using std::function. The lambda could have a non-empty capture clause (Next lesson).
   std::function addNumbers2{ // note: pre-C++17, use std::function<double(double, double)> instead
     [](double a, double b) {
       return (a + b);
     }
   };
- 
+
   addNumbers2(3, 4);
- 
+
   // Using auto. Stores the lambda with its real type.
   auto addNumbers3{
     [](double a, double b) {
       return (a + b);
     }
   };
- 
+
   addNumbers3(5, 6);
- 
+
   return 0;
 ```
 
@@ -98,21 +98,21 @@ The **capture clause** is used to (indirectly) give a lambda access to variables
 #include <iostream>
 #include <string_view>
 #include <string>
- 
+
 int main()
 {
   std::array<std::string_view, 4> arr{ "apple", "banana", "walnut", "lemon" };
- 
+
   std::cout << "search for: ";
- 
+
   std::string search{};
   std::cin >> search;
- 
+
   // Capture @search                                vvvvvv
   auto found{ std::find_if(arr.begin(), arr.end(), [search](std::string_view str) {
     return (str.find(search) != std::string_view::npos);
   }) };
- 
+
   if (found == arr.end())
   {
     std::cout << "Not found\n";
@@ -121,7 +121,7 @@ int main()
   {
     std::cout << "Found " << *found << '\n';
   }
- 
+
   return 0;
 }
 ```
@@ -136,26 +136,26 @@ While these cloned variable have the same name, they don't necessarily have the 
 By default, varialbes are captured by `const value`. This means when the lambda is created, the lambda captures a constant copy of the outer scope variable, which means that the lambda is not allowed to modify them.
 ```cpp
 #include <iostream>
- 
+
 int main()
 {
   int ammo{ 10 };
- 
+
   // Define a lambda and store it in a variable called "shoot".
   auto shoot{
     [ammo]() {
       // Illegal, ammo was captured as a const copy.
       --ammo;
- 
+
       std::cout << "Pew! " << ammo << " shot(s) left.\n";
     }
   };
- 
+
   // Call the lambda
   shoot();
- 
+
   std::cout << ammo << " shot(s) left\n";
- 
+
   return 0;
 }
 ```
@@ -163,26 +163,26 @@ int main()
 To allow modifications of variables that were captured by the value, we can mark the lambda as `mutable`. The **mutalbe** keyword in this context removes the `const` qualification from *all* variables captured by value.
 ```cpp
 #include <iostream>
- 
+
 int main()
 {
   int ammo{ 10 };
- 
+
   auto shoot{
     // Added mutable after the parameter list.
     [ammo]() mutable {
       // We're allowed to modify ammo now
       --ammo;
- 
+
       std::cout << "Pew! " << ammo << " shot(s) left.\n";
     }
   };
- 
+
   shoot();
   shoot();
- 
+
   std::cout << ammo << " shot(s) left\n";
- 
+
   return 0;
 }
 ```
@@ -191,25 +191,25 @@ We can also capture variables by reference to allow our lambda to affect the val
 To capture a variable by reference, we prepend an ampersand (`&`) to the variable name. Variables that are captured by reference are non-const, unless the variable they're capturing is `const`.
 ```cpp
 #include <iostream>
- 
+
 int main()
 {
   int ammo{ 10 };
- 
+
   auto shoot{
     // We don't need mutable anymore
     [&ammo]() { // &ammo means ammo is captured by reference
       // Changes to ammo will affect main's ammo
       --ammo;
- 
+
       std::cout << "Pew! " << ammo << " shot(s) left.\n";
     }
   };
- 
+
   shoot();
- 
+
   std::cout << ammo << " shot(s) left\n";
- 
+
   return 0;
 }
 ```
@@ -219,7 +219,7 @@ Multiple variables can be captured by separating them with a comma. This can inc
 int health{ 33 };
 int armor{ 100 };
 std::vector<CEnemy> enemies{};
- 
+
 // Capture health and armor by value, and enemies by reference.
 [health, armor, &enemies](){};
 ```
@@ -232,25 +232,25 @@ Default captures can be mixed with normal captures. We can capture some variable
 int health{ 33 };
 int armor{ 100 };
 std::vector<CEnemy> enemies{};
- 
+
 // Capture health and armor by value, and enemies by reference.
 [health, armor, &enemies](){};
- 
+
 // Capture enemies by reference and everything else by value.
 [=, &enemies](){};
- 
+
 // Capture armor by value and everything else by reference.
 [&, armor](){};
- 
+
 // Illegal, we already said we want to capture everything by reference.
 [&, &armor](){};
- 
+
 // Illegal, we already said we want to capture everything by value.
 [=, armor](){};
- 
+
 // Illegal, armor appears twice.
 [armor, &health, &armor](){};
- 
+
 // Illegal, the default capture has to be the first element in the capture group.
 [armor, &](){};
 ```
@@ -259,17 +259,17 @@ Sometimes we want to capture a variable with a slight modification or declare a 
 ```cpp
 #include <array>
 #include <iostream>
- 
+
 int main()
 {
   std::array areas{ 100, 25, 121, 40, 56 };
- 
+
   int width{};
   int height{};
- 
+
   std::cout << "Enter width and height: ";
   std::cin >> width >> height;
- 
+
   // We store areas, but the user entered width and height.
   // We need to calculate the area before we can search for it.
   auto found{ std::find_if(areas.begin(), areas.end(),
@@ -278,7 +278,7 @@ int main()
                            [userArea{ width * height }](int knownArea) {
                              return (userArea == knownArea);
                            }) };
- 
+
   if (found == areas.end())
   {
     std::cout << "I don't know this area :(\n";
@@ -287,7 +287,7 @@ int main()
   {
     std::cout << "Area found :)\n";
   }
- 
+
   return 0;
 }
 ```
@@ -295,33 +295,33 @@ int main()
 >**Best practice**
 >Only initialize variables in the capture if their value is short and their type is obvious. Otherwise it's best to define the variable outside of the lambda and capture it.
 ###Dangling captured variables
-If a variable captuerd by reference dies before teh lambda, the lambda will be left holding a dangling reference. 
+If a variable captuerd by reference dies before teh lambda, the lambda will be left holding a dangling reference.
 To prevent copies of our lambda from being made in the first place, we can call `std::ref` which allows us to pass a normal type as if it were a reference. By wrapping our lambda in a `std::ref`, whenever anybody tries to make a copy of our lambda, they'll make a copy of the reference instead, which will copy the reference rather than the actual object.
 ```cpp
 #include <iostream>
 #include <functional>
- 
+
 void invoke(const std::function<void(void)> &fn)
 {
     fn();
 }
- 
+
 int main()
 {
     int i{ 0 };
- 
+
     // Increments and prints its local copy of @i.
     auto count{ [i]() mutable {
       std::cout << ++i << '\n';
     } };
- 
+
     // std::ref(count) ensures count is treated like a reference
     // thus, anything that tries to copy count will actually copy the reference
     // ensuring that only one count exists
     invoke(std::ref(count));
     invoke(std::ref(count));
     invoke(std::ref(count));
- 
+
     return 0;
 }
 ```
