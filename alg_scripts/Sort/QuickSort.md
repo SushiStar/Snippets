@@ -43,4 +43,4 @@ The crux of the method is the partitioning process, which rearranges the array t
 This code partitions on the item v in a[lo]. The main loop exits when the scan indices i and j cross.
 Within the loop, we increment i while a[i] is less than v and decrement j while a[j] is greater than v, then do an exchange to maintain the invariant property that no entries to the left of i are greater than v and no entries to the right of j are smaller than v. Once the indices meet, we complete the partitioning by exchangeing a[lo] with a[j] (j points to the rightmost entry smaller than v). (thus leaving the partitioning value in a[j]).
 
-**Time Complexity**: Quicksort uses $2NlgN$ compares on the average to sort an array of length N with distinct keys.
+**Time Complexity**: Quicksort uses `math $2NlgN$` compares on the average to sort an array of length N with distinct keys.
