@@ -1,4 +1,4 @@
-# Finding Articulation Points and Bridges(Undirected Graph)
+#Finding Articulation Points and Bridges(Undirected Graph)
 
 An **Articulation Point** is defined as a *vertex* in a graph G whose removal (all edges incident to this vertex are also removed) disconnects G. A graph without any articulation point is called **Biconnected**. Similarly, a **Bridge** is defined as an *edge* in a graph G whose removal disconnects G.
 
@@ -10,45 +10,45 @@ The process to find bridges is similar. When `dfs_low(v) > dfs_num(u)`, then edg
 
 ```cpp
 void articulationPointAndBridge(int u) {
-    dfs_low[u] = dfs_num[u] = dfsNubmerCounter++; // dfs_low[u] <= dfs_num[u]
-    for (int j = 0; j < (int)AdjList[u].size(); ++j) {
-        ii v = AdjList[u][j];
-        if (dfs_num[v.first] == UNVISITED) {
-            dfs_parent[v.first] = u;
-            if (u == dfsRoot) rootChildren++; // special case if u is a root
+  dfs_low[u] = dfs_num[u] = dfsNubmerCounter++;  // dfs_low[u] <= dfs_num[u]
+  for (int j = 0; j < (int)AdjList[u].size(); ++j) {
+    ii v = AdjList[u][j];
+    if (dfs_num[v] == UNVISITED) {
+      dfs_parent[v] = u;
+      if (u == dfsRoot) rootChildren++;  // special case if u is a root
 
-            articulationPointAndBridge(v.first);
+      articulationPointAndBridge(v);
 
-            if (dfs_low[v.first] >= dfs_num[u]) // for articulation point
-                articulation_vectex[u] = true;  // store this information first
+      if (dfs_low[v] >= dfs_num[u])  // for articulation point
+        articulation_vectex[u] = true;     // store this information first
 
-            if (dfs_low[v.first] > dfs_num[u]) // for bridge
-                bridge[v.first][u] = bridge[u][v.first] = true;
-            dfs_low[u] = min(dfs_low[u], dfs_low[v.first]); // update dfs_low
+      if (dfs_low[v] > dfs_num[u])  // for bridge
+        bridge[v][u] = bridge[u][v] = true;
+      dfs_low[u] = min(dfs_low[u], dfs_low[v]);  // update dfs_low
 
-        } else if (v.first != dfs_parent[u]) // a back edge and not direct cycle
-            dfs_low[u] = min(dfs_low[u], dfs_num[v.first]); // update
-    }
+    } else if (v!= dfs_parent[u])  // a back edge and not direct cycle
+      dfs_low[u] = min(dfs_low[u], dfs_num[v]);  // update
+  }
 }
 
 int main() {
-    dfsNumberCounter = 0;
-    dfs_num.assign(V, UNVISITED);
-    dfs_low.assign(V, 0);
-    dfs_parent.assign(V, 0);
-    articulation_vertex.assign(V, 0);
-    for (int i = 0; i < V; ++i) {
-		if (dfs_num[i] == UNVISITED) {
-			dfsRoot = i;
-			rootChildren = 0;
-			articulationPointAndBridge(i);
-			articulation_vertex[dfsRoot] = (rootChildren > 1);
-		}
+  dfsNumberCounter = 0;
+  dfs_num.assign(V, UNVISITED);
+  dfs_low.assign(V, 0);
+  dfs_parent.assign(V, 0);
+  articulation_vertex.assign(V, 0);
+  for (int i = 0; i < V; ++i) {
+    if (dfs_num[i] == UNVISITED) {
+      dfsRoot = i;
+      rootChildren = 0;
+      articulationPointAndBridge(i);
+      articulation_vertex[dfsRoot] = (rootChildren > 1);
     }
-	for (int i = 0; i < V; ++i) {
-		if (articulation_vertex[i]) {
-			printf(" Vertex %d\n", i);
-		}
-	}
+  }
+  for (int i = 0; i < V; ++i) {
+    if (articulation_vertex[i]) {
+      printf(" Vertex %d\n", i);
+    }
+  }
 }
 ```
