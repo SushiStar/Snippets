@@ -1,18 +1,17 @@
-#include <unordered_map>
-#include <iostream>
-#include <thread>
-#include <string>
-#include <vector>
 #include <cpr/cpr.h>
+
+#include <iostream>
+#include <string>
+#include <thread>
+#include <unordered_map>
+#include <vector>
 
 class WebGetter {
  private:
-  static std::mutex mtx;  // lock for counter
-  static std::unordered_map<int, int> counter;
+  std::mutex mtx;  // lock for counter
+  std::unordered_map<std::string, int> counter;
 
-  static void GetCodefromWeb(const std::string &url,
-                             std::unordered_map<int, int> &counter,
-                             std::mutex &mtx);
+  void GetCodefromWeb(const std::string &url);
 
  public:
   WebGetter(){};
@@ -20,31 +19,25 @@ class WebGetter {
   void GetCode(const std::vector<std::string> &weblist);
   void ShowInfo();
 };
-void WebGetter::GetCodefromWeb(const std::string &url,
-                               std::unordered_map<int, int> &counter,
-                               std::mutex &mtx) {
-  cpr::Response r = cpr::Get(cpr::Url{url});
+void WebGetter::GetCodefromWeb(const std::string &url) {
+  auto start = std::chrono::high_resolution_clock::now();
+  std::chrono::duration<double> elapsed{0};
+  while (elapsed.count() < 3.0)
+    elapsed = std::chrono::high_resolution_clock::now() - start;
   mtx.lock();
-  counter[r.status_code]++;
+  counter[url]++;
   mtx.unlock();
 }
 void WebGetter::GetCode(const std::vector<std::string> &weblist) {
   std::vector<std::thread *> threads(weblist.size());
   for (int i = 0; i < weblist.size(); ++i) {
-    threads[i] =
-        std::move(new std::thread(GetCodefromWeb, weblist[i], counter, mtx));
+    threads[i] = std::move(
+        new std::thread(&WebGetter::GetCodefromWeb, this, weblist[i]));
   }
-  for (auto t : threads) {
-    t->join();
-  }
+  for (auto t : threads) t->join();
 }
 
-void WebGetter::ShowInfo() {
-  for (const auto &pr : counter) {
-    std::cout << "status_code: " << pr.first << ", number of web: " << pr.second
-              << std::endl;
-  }
-}
+void WebGetter::ShowInfo() {}
 int main() {
   std::vector<std::string> list_of_webpages{
       "https://bbc.co.uk",   "https://nytimes.com",
