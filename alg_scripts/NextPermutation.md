@@ -21,9 +21,7 @@ bool NextPermutation(std::vector<T>& elems) {
     }
   }
 
-  if (li == -1) {
-    return false;
-  }
+  if (li == -1) return false;
 
   swap(elems[li], elems[next_candidate_index]);
   reverse(elems.begin() + li + 1, elems.end());
