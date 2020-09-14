@@ -1,0 +1,51 @@
+%%%%%%%%%%%%%%%%%%%%%%%% Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[letterpaper,11pt]{article}
+
+% General usage: fonts, pics, etc.
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{comment}
+\usepackage{hyperref}
+
+% math packages
+\usepackage{mathtools}
+
+% algorithms
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{algorithmicx}
+
+%%%%%%%%%%%%%%%%%%%%%%%% Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\coursetopic}{Lecture Title}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%% Documents %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{center}{\huge \bfseries \coursetopic}\end{center}  % title
+\begin{flushright} \today\end{flushright}                 % date
+
+
+
+
+\end{document}
+
+
+
+
+%%%%%%%%%%%%%%%%%%% Template for pseudocode %%%%%%%%%%%%%%%%%%
+\begin{algorithm}
+    \caption{Euclid’s algorithm}
+    \label{euclid}
+    \begin{algorithmic}[1] % The number tells where the line numbering should start
+        \Procedure{Euclid}{$a,b$} \Comment{The g.c.d. of a and b}
+            \State $r\gets a \bmod b$
+            \While{$r\not=0$} \Comment{We have the answer if r is 0}
+                \State $a \gets b$
+                \State $b \gets r$
+                \State $r \gets a \bmod b$
+            \EndWhile\label{euclidendwhile}
+            \State \textbf{return} $b$\Comment{The gcd is b}
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+
