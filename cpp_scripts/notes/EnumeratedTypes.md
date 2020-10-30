@@ -1,4 +1,4 @@
-#Enumerated types
+# Enumerated types
 An enumerated type (also called an **enumeration** or **enum**) is a data type where every possible value is defined as a symbolic constant (called an **enumerator**). Enumerations are defined via the **enum** keyword.
 ```cpp
 // Define a new enumeration named Color
@@ -25,11 +25,11 @@ Color apple { COLOR_RED };
 Defining an enumeration (or any user-defined data type) does allocate any memory. When a variable of the enumerated type is defined (such as variable paint in the example above), memory is allocated for that variable at that time.
 Note that each enumerator is separated by a comma, and the entire enumeration is ended with a semicolon.
 
-###Naming enumerations and enumerators
+### Naming enumerations and enumerators
 Providing a name for an enumeration is optional, but common. Enums without a name are sometimes called anonymous enums. Enumeration names are often named starting with a capital letter.
 Enumerators must be given names, and are typically named either using all caps (e.g. COLOR\_WHITE), or prefixed with a k and intercapped (e.g. kColorWhite).
 
-###Enumerator scope
+### Enumerator scope
 Because enumerators are placed into the same namespace as the enumeration, an enumerator name can't be used in multiple enumerations within the same namespace:
 
 ###Enumerator values
@@ -89,6 +89,6 @@ enum Color : int
 ```
 As with constant variables, enumerated types show up in the debugger, making them more useful than #defined values in this regard.
 
-##Enum classes
+## Enum classes
 C++11 defines a new concept, the **enum class** (also called a scoped enumeration), which makes enumerations both strongly typed and strongly scoped. To make an enum class, we use the keyword **class** after the enum keyword.
 With normal enumerations, enumerators are placed in the same scope as teh enmeration itself, so you can typically access enumerators directly. However, with enum classes, the strong scoping rules mean that all enumerators are considered part of the enumeration, so you have to use a scope qualifier to access the enumerator. The help keeps name pollution and the potential for name conflicts down.
