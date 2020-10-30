@@ -32,7 +32,7 @@ Enumerators must be given names, and are typically named either using all caps (
 ### Enumerator scope
 Because enumerators are placed into the same namespace as the enumeration, an enumerator name can't be used in multiple enumerations within the same namespace:
 
-###Enumerator values
+### Enumerator values
 Each enumerator is automaticall assigned an integer value based on its position in the enumeration list. By default, the first enumerator is assigned the integer value 0, and each subsequent enumerator has a value one greater than the previous enumerator.
 It is possible to explicitly define the value of enumerator. These integer values can be positive or negative and can share the same value as otehr enumerators. Any non-defined enumerators are given a value one greater than the previous enumerator.
 ```cpp
