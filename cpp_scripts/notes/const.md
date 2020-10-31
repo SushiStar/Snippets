@@ -1,4 +1,4 @@
-The const after the argument listin the function declarations indicates that these functions do
+The const after the argument list in the function declarations indicates that these functions do
 not modify the state of a class:
     void getVal() const{/* */}
 const_cast is used to cast away the constness of variables:
