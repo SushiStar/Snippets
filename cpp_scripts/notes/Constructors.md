@@ -172,7 +172,7 @@ public:
  
     Rectangle(double length)
         : m_length{ length }
-    {
+    {t
         // m_length is initialized by the constructor.
         // m_width's default value (1.0) is used.
     }

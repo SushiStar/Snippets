@@ -1,5 +1,5 @@
-#The override and findal specifiers, and covariant return types
-###The override specifier
+# The override and findal specifiers, and covariant return types
+### The override specifier
 A derived class virtual function is only considered an override if its signature and return types match exactly.
 
 To help address the issue of functions that are meant to be overrides but aren't, C++11 introducted the **override specifier**. The override specifier can be applied to any override function by placing the specifier in the same place const would go. If the function does not override a base class function (or is applied to a non-virtual function), the compiler will flag the function as an error.
@@ -22,7 +22,7 @@ There is no performance penalty for using the override specifier, and it helps a
 >Rule
 >Apply the override specifier to every intended override function you write.
 
-###The final specifier
+### The final specifier
 There may be cases where you don't want someone to be able to override a virtual function or inherit from a class. The final specifier can be used to tell the compiler to enforce this.
 
 In the case where we want to restrict the user from overriding a function, the **final specifier** is used in the same place override specifier is:
@@ -57,7 +57,7 @@ public:
 ```
 In the above example, class B is declared final. Thus, when C tries to inherit from B, the compiler will give compoile error.
 
-###Covariant return types
+### Covariant return types
 There is one special case in which a derived class virtual function override can have a different return type than the base class and still be considered a matching override.
 If the return type of a virtual function is a pointer or a reference to a class, override functions can return a pointer or a reference to a derived class.
 These are called covariant return types.
