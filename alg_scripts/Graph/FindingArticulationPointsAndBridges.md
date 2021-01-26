@@ -1,4 +1,4 @@
-#Finding Articulation Points and Bridges(Undirected Graph)
+# Finding Articulation Points and Bridges(Undirected Graph)
 
 An **Articulation Point** is defined as a *vertex* in a graph G whose removal (all edges incident to this vertex are also removed) disconnects G. A graph without any articulation point is called **Biconnected**. Similarly, a **Bridge** is defined as an *edge* in a graph G whose removal disconnects G.
 
@@ -52,3 +52,4 @@ int main() {
   }
 }
 ```
+Leetcode questions related: 1192 / 802
