@@ -1,0 +1,222 @@
+%%%%%%%%%%%%%%%%%%%%%%%% Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[letterpaper,11pt]{report}
+
+% General usage: fonts, pics, etc.
+\usepackage[margin=.60in]{geometry}
+\usepackage[stable]{footmisc}
+\usepackage{times}
+\usepackage{comment}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{graphicx}
+
+% math packages
+\usepackage{mathtools}
+\usepackage{eucal}
+\usepackage{amssymb}
+
+% algorithms
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{algorithmicx}
+\usepackage{listings}
+
+%%%%%%%%%%%%%%%%%%%%%%%% Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\coursetopic}{Googletest}
+\newcommand{\thedate}{Jan 25, 2021}
+
+% set the default code style
+\lstset{
+    basicstyle=\footnotesize,
+    frame=single, % draw a frame at the top and bottom of the code block
+    tabsize=4, % tab space width
+    showstringspaces=false, % don't mark spaces in strings
+    % numbers=left, % display line numbers on the left
+    commentstyle=\color{gray}, % comment color
+    keywordstyle=\color{blue}, % keyword color
+    stringstyle=\color{red} % string color
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%% Documents %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{center}{\huge \bfseries \coursetopic}\end{center}  % title
+\begin{flushright}\thedate\end{flushright} % date
+
+\section*{Thinkings on test}
+\subsection*{Googletest}
+\textit{googletest} helps you to write better \textit{C++} tests.
+\subsection*{Good tests}
+\begin{itemize}
+    \item Tests should be independent and repeatable.
+    \item Tests should be well organized and reflect the structure of the tested code.
+    \item Tests should be portable and reusable. (\textit{platform-neutral})
+    \item Tests should be fast.
+    \item When tests fail, they should provide as much information about the problem as possible.
+\end{itemize}
+
+\section*{Basic Concepts}
+\begin{itemize}
+    \item When using googletest, we start by writing \textit{assertions}.
+    \item An assertion's result can be \textbf{success}, \textbf{nonfatal failure}, \textbf{fatal failure},
+if a fatal failure occurs, it aborts the current function; otherwise, the program continues normally.
+    \item A \textit{test suite} contains one or many tests. You should group your tests into test suites that reflect 
+the sturcture of the code. When multiple tests in a test suite need to share common objects and subroutines,
+you can put them into a test fixture class.
+    \item A test program can contain multiple test suites.
+\end{itemize}
+
+\section*{Assertions}
+When an assertion fails, googletest prints the assertion's source file and line number location,
+ along with a failure message.
+\begin{itemize}
+    \item \texttt{ASSERT\_*} versions generate fatal failures when they fail and abort current function.
+    \item \texttt{EXPECT\_*} versions geenrate nonfatal failures, which don't abort current function.
+    \item To provide a custom failure message, simply stream it to the macro using the \texttt{<<} operator.
+\end{itemize}
+\subsection*{Basic Assertion}
+\begin{center}
+    \begin{tabular}{| c | c | c |}
+        \hline
+        \textbf{Fatal Assertion}           & \textbf{Nonfatal Assertion}       & \textbf{Verifies}     \\ \hline 
+        \texttt{ASSERT\_TRUE(condition)}   & \texttt{EXPECT\_TRUE(condition)}  & \texttt{condition} is true \\ \hline
+        \texttt{ASSERT\_FALSE(condition)}  & \texttt{EXPECT\_FALSE(condition)} & \texttt{condition} is false \\ \hline
+    \end{tabular}
+\end{center}
+
+\subsection*{Binary Comparison}
+\begin{center}
+    \begin{tabular}{| c | c | c |}
+        \hline
+        \textbf{Fatal Assertion}         & \textbf{Nonfatal Assertion}     & \textbf{Verifies}     \\ \hline 
+        \texttt{ASSERT\_EQ(val1, val2)}  & \texttt{EXPECT\_EQ(val1, val2)} & \texttt{val1 == val2} \\ \hline
+        \texttt{ASSERT\_NE(val1, val2)}  & \texttt{EXPECT\_NE(val1, val2)} & \texttt{val1 != val2} \\ \hline
+        \texttt{ASSERT\_LT(val1, val2)}  & \texttt{EXPECT\_LT(val1, val2)} & \texttt{val1 < val2}  \\ \hline
+        \texttt{ASSERT\_LE(val1, val2)}  & \texttt{EXPECT\_LE(val1, val2)} & \texttt{val1 <= val2} \\ \hline
+        \texttt{ASSERT\_GT(val1, val2)}  & \texttt{EXPECT\_GT(val1, val2)} & \texttt{val1 > val2}  \\ \hline
+        \texttt{ASSERT\_GE(val1, val2)}  & \texttt{EXPECT\_GE(val1, val2)} & \texttt{val1 >= val2} \\ \hline
+    \end{tabular}
+\end{center}
+\begin{itemize}
+    \item \texttt{ASSERT\_EQ()} does pointer equality on pointers.
+     If used on two C strings, it tests if they are in the same memory location, not if they have the same value.
+    \item \texttt{ASSERT\_EQ(actual, expected)} is preferred to \texttt{ASSERT\_TRUE(actual == expected)}, since it tells you actual and expected's values on failure. 
+    \item The arguments'evaluation order is undefined.
+\end{itemize}
+
+\subsection*{String Comparison}
+The assertions in this group compare two \textbf{C strings}.\\
+\textcolor{red}{If you want to compare two \textbf{string objects}, use \texttt{EXPECT\_EQ}, \texttt{EXPECT\_NE}, and etc instead.}
+\begin{center}
+    \footnotesize{
+    \begin{tabular}{| c | c | c |}
+        \hline
+        \textbf{Fatal Assertion}           & \textbf{Nonfatal Assertion}     & \textbf{Verifies}     \\ \hline 
+        \texttt{ASSERT\_STREQ(val1, val2)} & \texttt{EXPECT\_STREQ(val1, val2)} & The two strings have the same content \\ \hline
+        \texttt{ASSERT\_STRNE(val1, val2)} & \texttt{EXPECT\_STRNE(val1, val2)} & The two strings have different contents \\ \hline
+        \texttt{ASSERT\_STRCASEEQ(val1, val2)} & \texttt{EXPECT\_STRCASEEQ(val1, val2)} & The two strings have the same content, ignoring case \\ \hline
+        \texttt{ASSERT\_STRCASENE(val1, val2)} & \texttt{EXPECT\_STRCASENE(val1, val2)} & The two strings have different contents, ignoring case \\ \hline
+    \end{tabular}}
+\end{center}
+\begin{itemize}
+    \item Note that "CASE" in an assertion name means that case is ignored.
+    \item A NULL pointer and an empty string are considered different.
+\end{itemize}
+
+\section*{Test}
+\begin{itemize}
+    \item Use the \texttt{TEST()} macro to define and name a test function.
+    \item In this function, along with any valid \textit{C++} statements you want to include, use 
+        the various googletest assertions to check the values.
+    \item The tests' results is determined by the assertions; if any assertions in the test fails, or
+        if the tetst crashes, the entire test fails.
+    \item \texttt{TEST()} arguments go from general to specific.
+    \item A test's full name consists of its containing tests suite and its individual name.
+    \item googletest groups the test results by test suites.
+\end{itemize}
+
+\section*{Test Fixtures}
+To reuse the same configuration of objects for several different tests.
+\begin{itemize}
+    \item Derive a class from \texttt{::testing::Test}, start its body with \texttt{protected:}.
+    \item Inside the class, declare any objects you plan to use.
+    \item If necessary, write a default constructor or \textcolor{red}{\texttt{SetUp()}} function, to prepare the objects for each test.
+    \item If necessray, write a default destructor or \texttt{TearDown()} function to release any resources allocated in \texttt{SetUp()}.
+    \item When using a fixture, use \texttt{TEST\_F()} instead, as it allows you to access objects in the fixture.  
+\end{itemize}
+
+\begin{lstlisting}[language=C++]
+    TEST_F(TestFixtureName, TestName){
+        // test body
+    }
+\end{lstlisting}
+
+Like \texttt{TEST()}, the first argument is the test suite name, but for \texttt{TEST\_F()} this must be the
+name of the test fixture class.
+
+\section*{Invoking the Tests}
+\texttt{TEST()} and \texttt{TEST\_F()} implicitly register their tests with googletest.\\
+Most users should not need to write their own main function and instead link with \texttt{gtest\_main} (as 
+opposed to with \texttt{gtest}), which defines a suitable entry point.\\
+The following is an example of fixture implementation:
+\begin{lstlisting}[language=C++]
+#include "this/package/foo.h"
+#include "gtest/gtest.h"
+
+namespace my {
+namespace project {
+namespace {
+
+// The fixture for testing class Foo.
+class FooTest : public ::testing::Test {
+ protected:
+  // You can remove any or all of the following functions if their bodies would
+  // be empty.
+
+  FooTest() {
+     // You can do set-up work for each test here.
+  }
+
+  ~FooTest() override {
+     // You can do clean-up work that doesn't throw exceptions here.
+  }
+
+  // If the constructor and destructor are not enough for setting up
+  // and cleaning up each test, you can define the following methods:
+
+  void SetUp() override {
+     // Code here will be called immediately after the constructor (right
+     // before each test).
+  }
+
+  void TearDown() override {
+     // Code here will be called immediately after each test (right
+     // before the destructor).
+  }
+
+  // Class members declared here can be used by all tests in the test suite
+  // for Foo.
+};
+
+// Tests that the Foo::Bar() method does Abc.
+TEST_F(FooTest, MethodBarDoesAbc) {
+  const std::string input_filepath = "this/package/testdata/myinputfile.dat";
+  const std::string output_filepath = "this/package/testdata/myoutputfile.dat";
+  Foo f;
+  EXPECT_EQ(f.Bar(input_filepath, output_filepath), 0);
+}
+
+// Tests that Foo does Xyz.
+TEST_F(FooTest, DoesXyz) {
+  // Exercises the Xyz feature of Foo.
+}
+
+}  // namespace
+}  // namespace project
+}  // namespace my
+
+int main(int argc, char **argv) {
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
+}
+\end{lstlisting}
+\end{document}
