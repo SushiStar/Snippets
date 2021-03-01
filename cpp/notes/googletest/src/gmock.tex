@@ -1,0 +1,76 @@
+%%%%%%%%%%%%%%%%%%%%%%%% Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[letterpaper,11pt]{report}
+
+% General usage: fonts, pics, etc.
+\usepackage[margin=.60in]{geometry}
+\usepackage[stable]{footmisc}
+\usepackage{times}
+\usepackage{comment}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{graphicx}
+
+% math packages
+\usepackage{mathtools}
+\usepackage{eucal}
+\usepackage{amssymb}
+
+% algorithms
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{algorithmicx}
+\usepackage{listings}
+
+%%%%%%%%%%%%%%%%%%%%%%%% Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\coursetopic}{gMock}
+\newcommand{\thedate}{Jan 25, 2021}
+
+% set the default code style
+\lstset{
+    basicstyle=\footnotesize,
+    frame=single, % draw a frame at the top and bottom of the code block
+    tabsize=4, % tab space width
+    showstringspaces=false, % don't mark spaces in strings
+    % numbers=left, % display line numbers on the left
+    commentstyle=\color{gray}, % comment color
+    keywordstyle=\color{blue}, % keyword color
+    stringstyle=\color{red} % string color
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%% Documents %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{center}{\huge \bfseries \coursetopic}\end{center}  % title
+\begin{flushright}\thedate\end{flushright} % date
+
+\section*{What is gMock?}
+When you write a prototype or test, often it's not feasible or wise to rely on real objects 
+entirely.\\
+A \textbf{mock object} implements the same interface as a real object (so it can be used as one),
+but lets you specify at run time how it will be used and what it should do (which methods will be
+called? in which order? how many times? with what arguments? what will they return?)
+
+\textbf{Fake objects} have working implementations, but usually take some shortcut(perhaps to make 
+the operations less expensive), which makes them not suitable for production.
+
+\textbf{Mocks} are objects pre-programmed with \textit{expectations},
+ which form a specification of the calls they are expected to receive.
+
+Use gMock when:
+\begin{itemize}
+    \item You are stuck with a sub-optimal design and wish you had done more prototyping before it
+        was too late, but prototyping in \texttt{C++} is by no means ``rapid''.
+    \item Your tests are slow as they depend on too many libraries or use expensive resources.
+    \item Your tests are brittle as some resources are unreliable.
+    \item You want to test how your code handle failure, but it's not easy to cause one.
+    \item You need to make sure your module interacts with other modules in the right way, but it's
+        hard to observe the interaction; therefore you resort to observing the side effects at the
+        end of the action, but it's awkward at best,
+    \item You want to "mock out" your dependencies, except that they don't have mock implementations
+        yet; and, frankly, you aren't thrilled by some of those hand written mocks.
+\end{itemize}
+
+\section*{Creating Mock Classes}
+Mock classes are defined as normal classes, using the \texttt{MOCK\_METHOD} macro to genrate mocked
+methods.
+
+\end{document}
