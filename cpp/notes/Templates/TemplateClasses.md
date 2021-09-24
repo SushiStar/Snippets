@@ -1,4 +1,4 @@
-#Template classes
+# Template classes
 In order for the compiler to use a template, it must see both the template definition (not just a declaration) and the template type used to instantiate the template. Also remember that C++ compiles files individually.
 
 When the `Array.h` header is #included in main, the template class definition is copied into `main.cpp`.
