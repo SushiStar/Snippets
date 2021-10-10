@@ -14,31 +14,25 @@ std::unordered_set<int> make_sorted_random(const std::size_t num_elems) {
   return ret;
 }
 
-/*
- * int main() {
- *   // this takes around 0.7s
- *   //   std::cout << make_sorted_random(1000000).size() << ' '
- *   // << make_sorted_random(1000000).size() << '\n';
- *
- *   // this also takes around 0.7s
- *   //   std::cout << std::async(make_sorted_random, 1000000).get().size() << ' '
- *   // << std::async(make_sorted_random, 1000000).get().size() << '\n';
- *
- *   // this takes 0.4s
- *   // https://en.cppreference.com/w/cpp/thread/async: f might be executed in
- *   // another thread or it might be run synchronously when the resulting
- *   // std::future is queried for a value
- *   auto f1 = std::async(std::launch::async, make_sorted_random, 1000000);
- *   auto f2 = std::async(std::launch::async, make_sorted_random, 1000000);
- *   std::cout << f1.get().size() << ' ' << f2.get().size() << '\n';
- *
- *   return 0;
- * }
- */
-
-
 int main() {
-    return 0;
-}
+  // this takes around 0.7s
+  //   std::cout << make_sorted_random(1000000).size() << ' '
+  // << make_sorted_random(1000000).size() << '\n';
 
+  // this also takes around 0.7s
+  //   std::cout << std::async(make_sorted_random, 1000000).get().size() << ' '
+  // << std::async(make_sorted_random, 1000000).get().size() << '\n';
+
+  // this takes 0.4s
+  // https://en.cppreference.com/w/cpp/thread/async: f might be executed in
+  // another thread or it might be run synchronously when the resulting
+  // std::future is queried for a value
+  // default is std::launch::deferred; so the std::async will still just use one
+  // core
+  auto f1 = std::async(std::launch::async, make_sorted_random, 1000000);
+  auto f2 = std::async(std::launch::async, make_sorted_random, 1000000);
+  std::cout << f1.get().size() << ' ' << f2.get().size() << '\n';
+
+  return 0;
+}
 
