@@ -2,7 +2,7 @@
 
 #### How to set a bit at nth position in number 'num':
 It can be done using 'OR' operator (|).
-* First we left shift '1' to n position via (1 << n)
+* First we left shift '1' to n position via `(1 << n)`
 * Then, use 'OR' operator to set bit at that position.
 ```cpp
 void set (int &num, int pos) {
@@ -11,7 +11,7 @@ void set (int &num, int pos) {
 ```
 
 #### How to unset/clear a bit at n'th position in the number 'num':
-* First we left shift '1' to n position via (1 << n) then we use bitwise NOT operator '~' to unset this shifted '1'.
+* First we left shift '1' to n position via `(1 << n)` then we use bitwise NOT operator '~' to unset this shifted '1'.
 * Now after clearing this left shifted '1', we will 'AND' with the number num.
 ```cpp
 void unset (int &num, int pos) {

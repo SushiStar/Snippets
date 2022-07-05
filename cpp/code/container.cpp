@@ -5,6 +5,11 @@
  */
 #include <memory> // unique_ptr
 #include <vector>
+#include <iostream>
+
+class Shape;
+class Kind;
+using namespace std;
 
 namespace WD{
     
@@ -19,7 +24,7 @@ namespace WD{
     /*
      * unique pointer
      */
-    unique_ptr<Shape> read_shape(istreams& is)      // read shape descriprions from input stream
+    unique_ptr<Shape> read_shape(istream& is)      // read shape descriprions from input stream
     {   
         switch(k){
             case Kind::circle:
