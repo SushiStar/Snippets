@@ -1,12 +1,27 @@
 # Finding Articulation Points and Bridges(Undirected Graph)
 
-An **Articulation Point** is defined as a *vertex* in a graph G whose removal (all edges incident to this vertex are also removed) disconnects G. A graph without any articulation point is called **Biconnected**. Similarly, a **Bridge** is defined as an *edge* in a graph G whose removal disconnects G.
+An **Articulation Point** is defined as a *vertex* in a graph G whose removal (all edges
+incident to this vertex are also removed) disconnects G. A graph without any articulation
+point is called **Biconnected**. Similarly, a **Bridge** is defined as an *edge* in a
+graph G whose removal disconnects G.
 
-We now maintain two numbers: `dfs_num(u)` and `dfs_low(u)`. Here, `dfs_num(u)` now stores the iteration counter when  the vertex `u` is visited *for the first time* (not just for distinguishing UNVISITED and EXPLORED/VISITED). The other number `dfs_low(u)` stores the lowest `dfs_num` reachable from the current DFS spanning subtree of `u`. At the beginning, `dfs_low(u) = dfs_num(u)` when vertex `u` is visited for the first time. Then, `dfs_low(u)` can only be made smaller if there is a cycle (a back edge exists). Note that we do not update `dfs_low(u)` with a back edge (u, v) if v is a direct parent of u.
+We now maintain two numbers: `dfs_num(u)` and `dfs_low(u)`. Here, `dfs_num(u)` now stores
+the iteration counter when  the vertex `u` is visited *for the first time* (not just for
+distinguishing UNVISITED and EXPLORED/VISITED). The other number `dfs_low(u)` stores the
+lowest `dfs_num` reachable from the current DFS spanning subtree of `u`. At the beginning,
+`dfs_low(u) = dfs_num(u)` when vertex `u` is visited for the first time. Then,
+`dfs_low(u)` can only be made smaller if there is a cycle (a back edge exists). Note that
+we do not update `dfs_low(u)` with a back edge (u, v) if v is a direct parent of u.
 
-When we are in a vertex `u` with `v` as its neighbor and `dfs_low(v) >= dfs_num(u)`, then u is an articulation vertex. This is because the fact that `dfs_num(v)` is not smaller than `dfs_num(u)` implies that there is no back edge from vertex `v`  that can reach another vertex `w` with a lower `dfs_num(w)` than `dfs_num(u)`. A vertex `w` with lower `dfs_num(w)` than vertex `u` with `dfs_num(u)` implies that `w` is the ancestor of u in the DFS spanning tree.
+When we are in a vertex `u` with `v` as its neighbor and `dfs_low(v) >= dfs_num(u)`, then
+u is an articulation vertex. This is because the fact that `dfs_num(v)` is not smaller
+than `dfs_num(u)` implies that there is no back edge from vertex `v`  that can reach
+another vertex `w` with a lower `dfs_num(w)` than `dfs_num(u)`. A vertex `w` with lower
+`dfs_num(w)` than vertex `u` with `dfs_num(u)` implies that `w` is the ancestor of u in
+the DFS spanning tree.
 
-The process to find bridges is similar. When `dfs_low(v) > dfs_num(u)`, then edge u-v is a bridge (notice that we remove the equality test '=' for  finding bridges).
+The process to find bridges is similar. When `dfs_low(v) > dfs_num(u)`, then edge u-v is a
+bridge (notice that we remove the equality test '=' for  finding bridges).
 
 ```cpp
 void articulationPointAndBridge(int u) {
