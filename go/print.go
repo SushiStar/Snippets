@@ -21,7 +21,6 @@ func main() {
     fmt.Printf("You scored %.2f points!\n", 225.55)
 
     // Sprintf (save formatted strings)
-    var str = fmt.Sprintf("Hello, %q you are %d years old!\n", name, age)
+    var str = fmt.Sprintf("Hello, %q you are %d years old!", name, age)
     fmt.Println(str)
-
 }
