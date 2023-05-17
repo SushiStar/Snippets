@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main1() {
+func main_hello() {
 	fmt.Println("Hello, World!")
 
 	/*
@@ -47,8 +47,8 @@ func main1() {
 	 *
 	 */
 
-     // floats
-     var scoreOne float32 = 25.98
-     scoreTwo := 2345894899828342454786839425.980980980
-     fmt.Println(scoreOne, scoreTwo)
+	// floats
+	var scoreOne float32 = 25.98
+	scoreTwo := 2345894899828342454786839425.980980980
+	fmt.Println(scoreOne, scoreTwo)
 }

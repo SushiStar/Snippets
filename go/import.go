@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func main1() {
+func main_import() {
 	greeting := "Hello there friends!"
 
 	// fmt.Println(strings.Contains(greeting, "Hello!"))
