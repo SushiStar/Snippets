@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main() {
+func main1() {
     // print no new line added
     fmt.Print("Hello, ")
     fmt.Print("World!\n")
