@@ -7,4 +7,10 @@ func main() {
 	// fmt.Println(mybill)
 
 	fmt.Println(mybill.format())
+
+	mybill.updateTip(10)
+	// fmt.Println(mybill.format())
+
+	mybill.addItem("onion soup", 4.50)
+	fmt.Println(mybill.format())
 }

@@ -29,13 +29,25 @@ func (b bill) format() string {
 	var total float32 = 0
 
 	for k, v := range b.items {
-		fs += fmt.Sprintf("%-25v ...$%v \n", k+":", v)
+		fs += fmt.Sprintf("%-25v ...$%.2f \n", k+":", v)
 		total += v
 	}
 	// tip
-	fs += fmt.Sprintf("%-25v ...$%0.2f \n", "tip:", b.tip)
+	fs += fmt.Sprintf("-----\n%-25v ...$%0.2f \n", "tip:", b.tip)
 
 	// total
 	fs += fmt.Sprintf("%-25v ...$%0.2f \n", "total:", total+b.tip)
 	return fs
+}
+
+// update the tip
+// if a pointer is passed, in the receiver, Go will automatically deference it
+func (b *bill) updateTip(tip float32) {
+	b.tip = tip
+}
+
+// add an item to the bill
+
+func (b *bill) addItem(name string, price float32) {
+	b.items[name] = price
 }
