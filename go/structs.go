@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main() {
+func main_struct() {
 	mybill := newBill("mario's bill")
 	// fmt.Println(mybill)
 
