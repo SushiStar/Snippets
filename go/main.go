@@ -81,7 +81,7 @@ func promptOptions(b bill) {
 
 }
 
-func main() {
+func main_main() {
 	/*
 	 *     mybill := newBill("Mario's bill")
 	 *
