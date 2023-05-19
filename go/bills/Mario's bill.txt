@@ -1,0 +1,7 @@
+Bill breakdown: 
+chips:                    ...$2.99 
+fish:                     ...$4.99 
+beer:                     ...$1.49 
+-----
+tip:                      ...$1.00 
+total:                    ...$10.47 
