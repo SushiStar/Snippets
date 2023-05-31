@@ -39,7 +39,7 @@ func printShapeInfo(s shape) {
 	fmt.Printf("Perimeter of type %T is %.3f\n\n", s, s.perimeter())
 }
 
-func main() {
+func main_interface() {
 	shapes := []shape{
 		square{length: 5},
 		circle{radius: 3},
