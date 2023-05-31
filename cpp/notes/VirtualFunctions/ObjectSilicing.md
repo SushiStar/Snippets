@@ -1,7 +1,8 @@
-#Object silicing
+# Object silicing
 The assigning of a Derived class object to a Base class object is called object slicing (or slicing for short).
 
-####Silicing and functions
+#### Silicing and functions
+
 ```cpp
 void printName(const Base base) // note: base passed by value, not reference
 {
@@ -20,7 +21,8 @@ Instead, Derived object d is sliced and only the Base portion is copied into the
 
 Of course, slicing here can all be easily avoided by making the function parameter a reference instead of a pass by value (yet another reason why passing classes by reference instead of value is a good idea).
 
-####Silicing vectors
+#### Silicing vectors
+
 ```cpp
 #include <vector>
 int main() {
@@ -37,7 +39,8 @@ int main() {
 Similar to the previous examples, because the std::vector was declared to be a vector of type Base, when Derived(6) was added to the vector, it was sliced. The elements of `std::vector` must be assignable, whereas references can’t be reassigned (only initialized).
 One way to address this is to make a vector of pointers.
 
-####The Frankenobject
+#### The Franken object
+
 ```cpp
 int main()
 {

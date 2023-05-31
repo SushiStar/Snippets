@@ -1,7 +1,8 @@
-#Template non-type parameters
+# Template non-type parameters
 Template classes and functions can make use of another kind of template parameter known as a non-type parameter.
-####Non-type parameters
+#### Non-type parameters
 A template non-type parameter is a special type of parameter that does not substitute for a type, but is instead replaced by a value. A non-type parameter can be any of the following:
+
 - A value that has an integral type or enumeration
 - A pointer or reference to a class object
 - A pointer or reference to a function

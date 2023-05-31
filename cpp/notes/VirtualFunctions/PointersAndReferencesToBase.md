@@ -1,5 +1,6 @@
-#Pointers and refernces to the base class of derived objects
-###Use for pointers and references to base classes
+# Pointers and refernces to the base class of derived objects
+### Use for pointers and references to base classes
+
 1. Lets' say you wanted to write a function that printed an animal's name and sound. Without using a pointer to the base class, you'd have to write it using overloaded functions, like this:
 ```cpp
 void report(const Cat &cat) {

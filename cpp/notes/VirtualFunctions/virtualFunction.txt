@@ -1,8 +1,0 @@
-A vritual function makes its class a polymorphic base class. Derived classes can override virtual functions.
-Virtual functions through base class pointers/references will be resolved at runtime. That is, a dynamic type
-of the object is used instead of its static type.
-
-A pure virtual function is a function whose declaration ends in =0;
-A pure virtual function implicitly makes the class it is defined for abstract.
-Abstract classes cannot be instantiated. Derived classes need to override/implement all inherited all pure virtual functions.
-If they do not, they too will become abstract.

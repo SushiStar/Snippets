@@ -1,4 +1,4 @@
-#Partial template specialization
+# Partial template specialization
 ```cpp
 template <typename T, int size>
 void print(StaticArray<T, size> &array) {

@@ -1,8 +1,8 @@
-#Function templates
+# Function templates
 In C++, **function templates** are functions that serve as a pattern for creating other similar functions. The basic idea behind function template is to create a function without having to specify the exact type(s) of some or all of the variables.
 Instead, we define the function using placeholder types, called **template type parameters**. Once we have created a function using these placeholder types, we have effectively created a "function stencil".
 
-####Creating function templates in C++
+#### Creating function templates in C++
 1. Template definition.
 2. A placeholder type
 

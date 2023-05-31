@@ -1,4 +1,4 @@
-#Class template specialization
+# Class template specialization
 Class template specialization allows us to specialize a template class for a particular data type (or data types, if there are multiple parameters). In this case, we're going to use class template specialization to write a customized version of another type that will take precedence over the generic class.
 This works analogously to how a specialized function takes precedence over a generic template function.
 
